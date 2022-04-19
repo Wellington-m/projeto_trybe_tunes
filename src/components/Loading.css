@@ -1,0 +1,22 @@
+.loading {
+  background: #FAFAFA;
+  height: 100%;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+
+.loading p {
+  position: absolute;
+
+  font-family: 'Epilogue';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 65px;
+
+  letter-spacing: 0.02em;
+
+  color: #023031;
+}
