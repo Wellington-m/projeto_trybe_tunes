@@ -64,6 +64,9 @@ Login.propTypes = {
   userName: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   btnDisabled: PropTypes.bool.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default Login;
