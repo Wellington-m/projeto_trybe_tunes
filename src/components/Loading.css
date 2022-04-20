@@ -1,7 +1,6 @@
 .loading {
-  background: #FAFAFA;
+  background: #fafafa;
   height: 40%;
-  left: 0px;
   position: absolute;
   top: 20px;
   width: 100%;
@@ -9,11 +8,11 @@
 
 .loading p {
   color: #023031;
-  font-family: 'Epilogue';
+  font-family: Epilogue , Helvetica , Arial , Verdana , Tahoma , sans-serif;
   font-size: 40px;
   font-style: normal;
   font-weight: 300;
-  line-height: 65px;
   letter-spacing: 0.02em;
+  line-height: 65px;
   position: absolute;
 }
