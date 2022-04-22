@@ -55,7 +55,9 @@ class Routes extends React.Component {
         <Route
           exact
           path="/search"
-          render={ (props) => <Search { ...props } /> }
+          render={ (props) => (<Search
+            { ...props }
+          />) }
         />
 
         <Route
