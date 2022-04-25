@@ -53,6 +53,8 @@ class Search extends React.Component {
       const { resultSearch } = this.state;
       if (resultSearch.length === 0) {
         this.setState({ returnedValue: false });
+      } else {
+        this.setState({ returnedValue: true });
       }
     });
   };
