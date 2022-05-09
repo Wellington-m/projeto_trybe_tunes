@@ -18,8 +18,8 @@ class MusicCard extends React.Component {
     const { favoriteSongs, music } = this.props;
     const isFavorite = favoriteSongs
       .some((favoriteMusic) => favoriteMusic.trackId === music.trackId);
+    console.log(this.props);
     if (isFavorite) {
-      console.log(isFavorite);
       this.setState({ checked: true });
     }
   }
@@ -48,7 +48,6 @@ class MusicCard extends React.Component {
   render() {
     const { trackName, previewUrl, trackId } = this.props;
     const { checked, loading } = this.state;
-    console.log(trackName);
     const track = (
       <label htmlFor="favorities">
         Favorita

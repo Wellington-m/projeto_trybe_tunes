@@ -38,6 +38,8 @@ Estilização para o checkbox de Favoritos pego desse link */
 /* Termina aqui a estilização do checkbox */
 .musicCard {
   display: flex;
+  width: 100%;
+  height: 100%;
 
   /* box-shadow: inset 0 0 1em gold; */
 

@@ -14,13 +14,12 @@ class Album extends React.Component {
       artistName: '',
       albumName: '',
       tracks: [],
-      isLoading: false,
       favoriteSongs: [],
+      isLoading: false,
     };
   }
 
   componentDidMount() {
-    this.getListOfMusic();
     this.getFavorite();
   }
 
@@ -33,38 +32,40 @@ class Album extends React.Component {
       artistName: firstResult.artistName,
       albumName: firstResult.collectionName,
       tracks: [...tracksList],
-    });
-  }
-
-  getFavorite = async () => {
-    this.setState({ isLoading: true });
-    const favoritesSongs = await getFavoriteSongs();
-    this.setState({
-      favoriteSongs: favoritesSongs,
       isLoading: false,
     });
   }
 
+  getFavorite = () => {
+    this.setState({ isLoading: true }, async () => {
+      const favoritesSongs = await getFavoriteSongs();
+      this.setState({
+        favoriteSongs: favoritesSongs,
+      });
+      this.getListOfMusic();
+    });
+  }
+
   render() {
-    const { artistName, albumName, tracks, isLoading, favoriteSongs } = this.state;
+    const { artistName, albumName, tracks, favoriteSongs, isLoading } = this.state;
+    console.log('album', favoriteSongs);
     return (
       <div data-testid="page-album">
         <Header />
         <p data-testid="artist-name">{artistName}</p>
         <p data-testid="album-name">{albumName}</p>
 
-        { isLoading ? <Loading />
-          : tracks.map((music) => (
-            <MusicCard
-              key={ music.trackId }
-              trackId={ music.trackId }
-              trackName={ music.trackName }
-              previewUrl={ music.previewUrl }
-              favoriteSongs={ favoriteSongs }
-              music={ music }
-              attFavorites={ this.getFavorite }
-            />
-          )) }
+        { isLoading ? <Loading /> : tracks.map((music) => (
+          <MusicCard
+            key={ music.trackId }
+            trackId={ music.trackId }
+            trackName={ music.trackName }
+            previewUrl={ music.previewUrl }
+            favoriteSongs={ favoriteSongs }
+            music={ music }
+            attFavorites={ this.getFavorite }
+          />
+        )) }
       </div>
     );
   }
