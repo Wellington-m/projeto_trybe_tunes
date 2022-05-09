@@ -19,17 +19,29 @@ class Album extends React.Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.getListOfMusic();
+    this.getFavorite();
+  }
+
+  getListOfMusic = async () => {
     const { match: { params: { id } } } = this.props;
     const musics = await getMusics(id);
-    const favoriteSong = await getFavoriteSongs();
     const [firstResult] = musics;
     const tracksList = musics.filter((element) => element.wrapperType === 'track');
     this.setState({
       artistName: firstResult.artistName,
       albumName: firstResult.collectionName,
       tracks: [...tracksList],
-      favoriteSongs: favoriteSong,
+    });
+  }
+
+  getFavorite = async () => {
+    this.setState({ isLoading: true });
+    const favoritesSongs = await getFavoriteSongs();
+    this.setState({
+      favoriteSongs: favoritesSongs,
+      isLoading: false,
     });
   }
 
@@ -41,18 +53,18 @@ class Album extends React.Component {
         <p data-testid="artist-name">{artistName}</p>
         <p data-testid="album-name">{albumName}</p>
 
-        { isLoading && <Loading /> }
-
-        { tracks.map((music) => (
-          <MusicCard
-            key={ music.trackId }
-            trackId={ music.trackId }
-            trackName={ music.trackName }
-            previewUrl={ music.previewUrl }
-            favoriteSongs={ favoriteSongs }
-            music={ music }
-          />
-        )) }
+        { isLoading ? <Loading />
+          : tracks.map((music) => (
+            <MusicCard
+              key={ music.trackId }
+              trackId={ music.trackId }
+              trackName={ music.trackName }
+              previewUrl={ music.previewUrl }
+              favoriteSongs={ favoriteSongs }
+              music={ music }
+              attFavorites={ this.getFavorite }
+            />
+          )) }
       </div>
     );
   }
