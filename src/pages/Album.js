@@ -27,7 +27,7 @@ class Album extends React.Component {
     const { match: { params: { id } } } = this.props;
     const musics = await getMusics(id);
     const [firstResult] = musics;
-    const tracksList = musics.filter((element) => element.wrapperType === 'track');
+    const tracksList = musics.slice(1);
     this.setState({
       artistName: firstResult.artistName,
       albumName: firstResult.collectionName,
