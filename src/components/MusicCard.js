@@ -18,7 +18,6 @@ class MusicCard extends React.Component {
     const { favoriteSongs, music } = this.props;
     const isFavorite = favoriteSongs
       .some((favoriteMusic) => favoriteMusic.trackId === music.trackId);
-    console.log(this.props);
     if (isFavorite) {
       this.setState({ checked: true });
     }
@@ -49,10 +48,11 @@ class MusicCard extends React.Component {
     const { trackName, previewUrl, trackId } = this.props;
     const { checked, loading } = this.state;
     const track = (
-      <label htmlFor="favorities">
+      <label htmlFor={ `checkbox-music-${trackId}` }>
         Favorita
         <span className="tw-heart-box">
           <input
+            id={ `checkbox-music-${trackId}` }
             type="checkbox"
             name="favorities"
             checked={ checked }
