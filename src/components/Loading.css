@@ -1,9 +1,9 @@
 .loading {
   background: #fafafa;
   height: 100%;
-  left: 0px;
+  left: 1px;
   position: absolute;
-  top: 0px;
+  top: 1px;
   width: 100%;
 }
 
