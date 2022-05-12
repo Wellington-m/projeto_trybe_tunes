@@ -50,13 +50,13 @@ class Profile extends React.Component {
             <section>
               <img src={ image } alt="imagem do perfil" data-testid="profile-image" />
               <p>
-                { `Nome: ${name}` }
+                { name }
               </p>
               <p>
-                { `Email: ${email}` }
+                {email}
               </p>
               <p>
-                { `Descrição: ${description}` }
+                { description }
               </p>
               <button
                 type="button"

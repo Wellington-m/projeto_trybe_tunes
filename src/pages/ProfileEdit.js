@@ -35,6 +35,7 @@ class ProfileEdit extends React.Component {
     });
   }
 
+  // https://www.horadecodar.com.br/2020/09/13/como-validar-email-com-javascript/
   validateEmail = ({ email }) => {
     const re = /\S+@\S+\.\S+/;
     return re.test(email);
@@ -64,8 +65,8 @@ class ProfileEdit extends React.Component {
   }
 
   saveInfos = async (element) => {
-    this.setState({ isLoadind: true });
     element.preventDefault();
+    this.setState({ isLoadind: true });
     const { name, email, description, image } = this.state;
     const userInfos = {
       name,
@@ -74,9 +75,9 @@ class ProfileEdit extends React.Component {
       description,
     };
     await updateUser(userInfos);
-    this.setState({ isLoadind: false });
     const { history } = this.props;
     history.push('/profile');
+    this.setState({ isLoadind: false });
   }
 
   render() {
