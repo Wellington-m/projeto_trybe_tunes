@@ -38,6 +38,19 @@ const Wrapper = styled.section`
   align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
+  h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+const ResultCards = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 `;
 
 class Search extends React.Component {
@@ -126,7 +139,7 @@ class Search extends React.Component {
                 : (
                   <div>
                     <h3>{`Resultado de álbuns de: ${nameSearched} `}</h3>
-                    <div>
+                    <ResultCards>
                       { resultSearch.map((album) => (
                         <AlbumCard
                           key={ album.collectionId }
@@ -136,7 +149,7 @@ class Search extends React.Component {
                           artistName={ album.artistName }
                         />
                       ))}
-                    </div>
+                    </ResultCards>
                   </div>
                 )}
 
