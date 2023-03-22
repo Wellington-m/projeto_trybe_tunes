@@ -1,52 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { addSong, removeSong } from '../services/favoriteSongsAPI';
-import Loading from './Loading';
 import './MusicCard.css';
 
 class MusicCard extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      loading: false,
-      checked: false,
-    };
-  }
-
-  componentDidMount() {
-    const { favoriteSongs, music } = this.props;
-    const isFavorite = favoriteSongs
-      .some((favoriteMusic) => favoriteMusic.trackId === music.trackId);
-    if (isFavorite) {
-      this.setState({ checked: true });
-    }
-  }
-
-  favoriteSong = async ({ target }) => {
-    const { music, attFavorites } = this.props;
-    if (target.checked) {
-      this.setState({
-        checked: true,
-        loading: true,
-      });
-      await addSong(music);
-      attFavorites();
-      this.setState({ loading: false });
-    } else {
-      this.setState({
-        checked: false,
-        loading: true,
-      });
-      await removeSong(music);
-      attFavorites();
-      this.setState({ loading: false });
-    }
-  }
-
   render() {
-    const { trackName, previewUrl, trackId } = this.props;
-    const { checked, loading } = this.state;
+    const { trackName, previewUrl, trackId, checked, attFavorites } = this.props;
     const track = (
       <label htmlFor={ `checkbox-music-${trackId}` }>
         Favorita
@@ -56,7 +14,7 @@ class MusicCard extends React.Component {
             type="checkbox"
             name="favorities"
             checked={ checked }
-            onChange={ this.favoriteSong }
+            onChange={ (e) => attFavorites(e, trackId) }
             data-testid={ `checkbox-music-${trackId}` }
           />
           <span className="tw-heart" />
@@ -71,7 +29,7 @@ class MusicCard extends React.Component {
           <code>audio</code>
           .
         </audio>
-        { loading ? <Loading /> : track }
+        { track }
 
       </div>
 
@@ -84,8 +42,8 @@ MusicCard.propTypes = {
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,
   music: PropTypes.shape({ trackId: PropTypes.number.isRequired }).isRequired,
-  favoriteSongs: PropTypes.arrayOf(PropTypes.object).isRequired,
   attFavorites: PropTypes.func.isRequired,
+  checked: PropTypes.bool.isRequired,
 };
 
 export default MusicCard;
