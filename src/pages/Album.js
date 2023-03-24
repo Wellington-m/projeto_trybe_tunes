@@ -36,14 +36,13 @@ class Album extends React.Component {
     });
   }
 
-  getFavorite = () => {
-    this.setState({ isLoading: true }, async () => {
-      const favoritesSongs = await getFavoriteSongs();
-      this.setState({
-        favoriteSongs: favoritesSongs,
-      });
-      this.getListOfMusic();
+  getFavorite = async () => {
+    this.setState({ isLoading: true });
+    const favoritesSongs = await getFavoriteSongs();
+    this.setState({
+      favoriteSongs: favoritesSongs,
     });
+    this.getListOfMusic();
   }
 
   isFavoriteSong = (musicId) => {
@@ -76,13 +75,16 @@ class Album extends React.Component {
 
   render() {
     const { artistName, albumName, tracks, favoriteSongs, isLoading } = this.state;
+    if (isLoading) {
+      return <Loading component="Album" />;
+    }
     return (
       <div data-testid="page-album">
         <Header />
         <p data-testid="artist-name">{artistName}</p>
         <p data-testid="album-name">{albumName}</p>
 
-        { isLoading ? <Loading /> : tracks.map((music) => (
+        { tracks.map((music) => (
           <MusicCard
             key={ music.trackId }
             checked={ this.isFavoriteSong(music.trackId) }
