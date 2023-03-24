@@ -7,7 +7,6 @@ class MusicCard extends React.Component {
     const { trackName, previewUrl, trackId, checked, attFavorites } = this.props;
     const track = (
       <label htmlFor={ `checkbox-music-${trackId}` }>
-        Favorita
         <span className="tw-heart-box">
           <input
             id={ `checkbox-music-${trackId}` }
