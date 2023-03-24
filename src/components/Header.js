@@ -61,7 +61,7 @@ class Header extends React.Component {
     const { userName, loading } = this.state;
 
     if (loading) {
-      return <Loading component="header" />;
+      return <Loading loadMessage="informações do usuário" />;
     }
     return (
       <HeaderS corFundo="#3F3D56" data-testid="header-component">

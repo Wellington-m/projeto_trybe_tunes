@@ -4,12 +4,12 @@ import './Loading.css';
 
 class Loading extends React.Component {
   render() {
-    const { component } = this.props;
+    const { loadMessage } = this.props;
     return (
       <div className="loading">
         <p>
           Carregando...
-          { component }
+          { ` ${loadMessage}` }
         </p>
       </div>
     );
@@ -17,7 +17,7 @@ class Loading extends React.Component {
 }
 
 Loading.propTypes = {
-  component: PropTypes.string.isRequired,
+  loadMessage: PropTypes.string.isRequired,
 };
 
 export default Loading;

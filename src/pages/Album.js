@@ -98,7 +98,7 @@ class Album extends React.Component {
       artistName,
       albumName, tracks, favoriteSongs, isLoading, img, albumId } = this.state;
     if (isLoading) {
-      return <Loading component="Album" />;
+      return <Loading loadMessage="Album" />;
     }
     return (
       <div data-testid="page-album">
