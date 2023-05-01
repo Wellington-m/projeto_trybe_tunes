@@ -111,7 +111,7 @@ class Search extends React.Component {
       <div data-testid="page-search">
         <Header />
         <Wrapper>
-          {loadingSearch ? <Loading loadMessage="pesquisa" />
+          {loadingSearch ? <Loading />
             : (
               <FormPesquisa onSubmit={ this.searchMusic }>
                 <FormInput

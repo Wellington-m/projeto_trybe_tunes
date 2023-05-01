@@ -42,7 +42,7 @@ class Favorites extends React.Component {
       <div data-testid="page-favorites">
         <Header />
         { isLoading
-          ? <Loading loadMessage="favoritos" />
+          ? <Loading />
           : allFavoriteSongs.map((music) => (
             <MusicCard
               key={ music.trackId }
