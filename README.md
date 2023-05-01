@@ -9,7 +9,7 @@ Este projeto trata-se de uma aplicação front-end, podendo pesquisar e listar �
 
 ## Rodando a aplicação localmente via docker
 * Clone o projeto ```git clone git@github.com:Wellington-m/projeto_trybe_tunes.git```
-* Entre na pasta ```cd ```
+* Entre na pasta ```cd projeto_trybe_tunes```
 * Crie a imagem docker ```docker build -t tunes .```
 * Inicie o container ```docker run --name project_planet_search -p 3000:3000 -d tunes```
 * Abra o navegador e entre no endereço http://localhost:3000/
@@ -17,5 +17,7 @@ Este projeto trata-se de uma aplicação front-end, podendo pesquisar e listar �
 
 ## Nesse projeto, foi utilizado:
 
-  * O _styled-components_ para estilização.
+  * React
+  * _styled-components_
+  * Local storage para armarzenar informações
 
